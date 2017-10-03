@@ -1,0 +1,20 @@
+volatility-browserhooks
+=======================
+
+Volatility-browserhooks is a http://www.volatilityfoundation.org[Volatility
+Framework] plugin to detect various types of hooks as performed by recent
+banking Trojans.
+
+Usage
+-----
+
+1. Move `browserhooks.py` to `volatility/plugins/malware` in the
+   Volatilty Framework path.
+2. Run: `python vol.py -f dump_from_compromised_windows_system.vmem
+   --profile=Win7SP1x64 browserhooks (-D _store_mods)`
+
+Authors
+-------
+
+- Peter Kálnai <peter.kalnai @_eset.cz>
+- Michal Poslušný <michal.poslusny @_eset.cz>
