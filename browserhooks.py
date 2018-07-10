@@ -442,69 +442,42 @@ class _UNICODE_STRING32(obj.CType):
     def __len__(self):
         return len(self.dereference())
 
-GOOGLE_CHROME_SSLTABLE_PATTERN_343 = {
-'namespace1': 'rule Google_Chrome_343 { \
-    strings: \
-        $chrome3264_54_55_56_57_58_59_60 = { 00 00 00 03 04 03 00 00  } \
-        $child = "chrome_child.dll" \
-    condition: \
-        $chrome3264_54_55_56_57_58_59_60 and not $child }'
+CHROME_OFFSETS_X86 = {
+#chrome_version     SSL_read    SSL_write    SSL_new
+"64.0.3282.119":	{ 0x00449B2C, 0x00448E87, 0x00380A7C },	#January 24, 2018
+"64.0.3282.140":	{ 0x00449B5C, 0x00448EB7, 0x00380A7C },	#February 1, 2018
+"64.0.3282.167":	{ 0x00449B5C, 0x00448EB7, 0x00380A7C },	#February 13, 2018
+"64.0.3282.186":	{ 0x00449A9C, 0x00448DF7, 0x0038095C },	#February 22, 2018
+"65.0.3325.146":	{ 0x00425F52, 0x00425291, 0x0036199C },	#March 6, 2018
+"65.0.3325.162":	{ 0x00425F52, 0x00425291, 0x0036199C },	#March 13, 2018
+"65.0.3325.181":	{ 0x00425F52, 0x00425291, 0x0036199C }, #March 20, 2018
+"66.0.3359.117":	{ 0x0043B558, 0x0043A679, 0x003FFE0A },	#April 17, 2018
+"66.0.3359.139":	{ 0x0043B558, 0x0043A679, 0x003FFE0A },	#April 26, 2018
+"66.0.3359.170":	{ 0x0043A558, 0x00439679, 0x003FEE9A },	#May 10, 2018
+"66.0.3359.181":	{ 0x0043A558, 0x00439679, 0x003FEE9A },	#May 15, 2018
+"67.0.3396.62":     { 0x004835D6, 0x00482839, 0x0042DE74 },	#May 29, 2018
+"67.0.3396.79":  	{ 0x004835D6, 0x00482839, 0x0042DE74 },	#June 6, 2018
+"67.0.3396.87":	    { 0x00483656, 0x004828B9, 0x0042DF04 },	#June 12, 2018
+"67.0.3396.99": 	{ 0x00483716, 0x00482979, 0x0042DF94 }  #June 25, 2018
 }
 
-GOOGLE_CHROME_SSLTABLE_PATTERN_51_52_53 = {
-'namespace1': 'rule Google_Chrome32_51_52_53 { \
-    strings: \
-        $chrome32_51_52_53_a = { 65 78 5F 64 61 74 61 2E 63 00 00 00 00 00 00 00 }  \
-        $chrome32_51_52_53_b = { 69 67 69 6E 49 6E 55 73 65 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00}  \
-        $chrome32_51_52_53_c = { 65 78 5F 64 61 74 61 2E 63 00 00 00 00 00 00 00 25 73 25 73 25 63 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 }  \
-    condition: \
-        ($chrome32_51_52_53_a or $chrome32_51_52_53_b or $chrome32_51_52_53_c ) } \
-rule Google_Chrome64_51_52_53 { \
-    strings: \
-        $chrome64_51_52_53_a = { 73 6C 5C 73 73 6C 5F 73 65 73 73 69 6F 6E 2E 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 } \
-        $chrome64_51_52_53_b = { 73 73 6C 5C 73 73 6C 5F 73 65 73 73 69 6F 6E 2E 63 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? 01 00 00 00} \
-        $chrome64_51_52_53_c = { 73 6C 5C 73 73 6C 5F 73 65 73 73 69 6F 6E 2E 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 } \
-    condition: \
-        ($chrome64_51_52_53_a or $chrome64_51_52_53_b or $chrome64_51_52_53_c) }'
-}
-
-GOOGLE_CHROME_SSLTABLE_PATTERN_61 = {
-'namespace1': 'rule Google_Chrome32_61 { \
-    strings: \
-        $chrome32_61_a = { 73 73 6C 5F 63 65 72 74 2E 63 63 00 00 00 00 00 00 00 00 00 }  \
-        $chrome32_61_b = { 74 6C 73 5F 6D 65 74 68 6F 64 2E 63 63 00 00 00 00 00 00 00 ?? ?? ?? 11}  \
-        $chrome32_61_c = { 74 6C 73 5F 6D 65 74 68 6F 64 2E 63 63 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 }  \
-    condition: \
-        ($chrome32_61_a or $chrome32_61_b or $chrome32_61_c) } \
-rule Google_Chrome64_61 { \
-    strings: \
-        $chrome64_61_a = { 74 6C 73 5F 6D 65 74 68 6F 64 2E 63 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 01 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 }     \
-        $chrome64_61_b = { 73 73 6C 2F 74 6C 73 5F 6D 65 74 68 6F 64 2E 63 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00}   \
-        $chrome64_61_c = { 55 1D 0F 00 00 00 00 00 2E 2E 2F 2E 2E 2F 74 68 69 72 64 5F 70 61 72 74 79 2F 62 6F 72 69 6E 67 73 73 6C 2F 73 72 63 2F 73 73 6C 2F 74 6C 73 5F 6D 65 74 68 6F 64 2E 63 63 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }   \
-    condition: \
-        ($chrome64_61_a or $chrome64_61_b or $chrome64_61_c) }'
-}
-
-
-
-QBOT_OFFSETS_X86 = {
-#    chrome_version    ssl_write    ssl_read
-    "60.0.3112.78" :  {0x00920e07, 0x00931349},
-    "58.0.3029.96" :  {0x00874fca, 0x00893a20},
-    "57.0.2987.133" : {0x008148e6, 0x00833595},
-    "56.0.2924.87" :  {0x00f34a18, 0x00f546d2},
-    "55.0.2883.75" :  {0x0110ccc1, 0x0112f2d7},
-    "52.0.2743.116":  {0x0041889b, 0x001aff9f},
-    "51.0.2704.84" :  {0x003e4e1e, 0x0019cef6}
-}
-QBOT_OFFSETS_X64 = {
-#    chrome_version        ssl_write             ssl_read
-    "60.0.3112.78" :  {0x0000000000d6ff40, 0x0000000000d702d4},
-    "58.0.3029.96" :  {0x0000000000c8e6f0, 0x0000000000c8ea00},
-    "57.0.2987.133" : {0x0000000000bae4e0, 0x0000000000bae7f4},
-    "56.0.2924.87" :  {0x0000000001458da0, 0x00000000014590b8},
-    "55.0.2883.75" :  {0x000000000167b194, 0x000000000167b4ac},
-    "53.0.2785.116":  {0x00000000012951b4, 0x0000000001295570}
+CHROME_OFFSETS_X64 = {
+#chrome_version           SSL_write             SSL_read          SSL_new
+"64.0.3282.119":	{ 0x00000000004F6CCA, 0x00000000004F5E5E, 0x0000000000421D22 },	#January 24, 2018
+"64.0.3282.140":	{ 0x00000000004F6D5A, 0x00000000004F5EEE, 0x0000000000421D12 },	#February 1, 2018
+"64.0.3282.167":	{ 0x00000000004F6D5A, 0x00000000004F5EEE, 0x0000000000421D12 },	#February 13, 2018
+"64.0.3282.186":	{ 0x00000000004F6C4A, 0x00000000004F5DDE, 0x0000000000421BF2 },	#February 22, 2018
+"65.0.3325.146":	{ 0x00000000004CE395, 0x00000000004CD4FC, 0x0000000000400567 },	#March 6, 2018
+"65.0.3325.162":	{ 0x00000000004CE395, 0x00000000004CD4FC, 0x0000000000400567 },	#March 13, 2018
+"65.0.3325.181":	{ 0x00000000004CE3D5, 0x00000000004CD53C, 0x0000000000400597 }, #March 20, 2018
+"66.0.3359.117":	{ 0x00000000004FCFED, 0x00000000004FBED0, 0x0000000000486E0E },	#April 17, 2018
+"66.0.3359.139":	{ 0x00000000004FD00D, 0x00000000004FBEF0, 0x0000000000486E2E },	#April 26, 2018
+"66.0.3359.170":	{ 0x00000000004FCF0D, 0x00000000004FBDF0, 0x0000000000486D4E },	#May 10, 2018
+"66.0.3359.181":	{ 0x00000000004FCF1D, 0x00000000004FBE00, 0x0000000000486D5E },	#May 15, 2018
+"67.0.3396.62":     { 0x0000000000610E65, 0x000000000060FEC2, 0x00000000004B9210 },	#May 29, 2018
+"67.0.3396.79":  	{ 0x0000000000610E55, 0x000000000060FEB2, 0x00000000004B9200 },	#June 6, 2018
+"67.0.3396.87":	    { 0x0000000000610F05, 0x000000000060FF62, 0x00000000004B92A0 },	#June 12, 2018
+"67.0.3396.99": 	{ 0x0000000000610F65, 0x000000000060FFC2, 0x00000000004B9300 }  #June 25, 2018
 }
 
 IMAGE_NT_OPTIONAL_HDR32_MAGIC = 0x010B
@@ -516,9 +489,7 @@ HOOKTYPE_EAT = 8
 HOOKTYPE_INLINE = 16
 HOOKTYPE_IRP = 256
 HOOKTYPE_WINSOCK = 512
-HOOKTYPE_SSL_VMT_INLINE = 1024
-HOOKTYPE_SSL_VMT_REPLACE = 2048
-HOOKTYPE_SSL_QBOT_INLINE = 4096
+HOOKTYPE_SSL_INLINE_CHROME_V64 = 4096
 
 # names for hook types
 hook_type_strings = {
@@ -526,9 +497,7 @@ hook_type_strings = {
     HOOKTYPE_EAT             : "Export Address Table (EAT)",
     HOOKTYPE_INLINE          : "Inline/Trampoline",
     HOOKTYPE_WINSOCK         : "Winsock Procedure Table Hook",
-    HOOKTYPE_SSL_VMT_INLINE          : "Chromium-based SSL VMT Hook Inline",
-    HOOKTYPE_SSL_VMT_REPLACE         : "Chromium-based SSL VMT Replacement",
-    HOOKTYPE_SSL_QBOT_INLINE : "SSL Hooks for Chrome implemented by Qbot"
+    HOOKTYPE_SSL_INLINE_CHROME_V64 : "SSL Hooks for Chrome version 64+"
 }
 
 #--------------------------------------------------------------------------------
@@ -1169,13 +1138,17 @@ class BrowserHooks(procdump.ProcDump):
             ver_major = chrome_version.split(".")[0]
             print("    chrome.dll major version: {0}".format(ver_major))
 
-            if decode_bits == 1:
-                qbot_offsets = QBOT_OFFSETS_X86
-            else:
-                qbot_offsets = QBOT_OFFSETS_X64
+            if int(ver_major) < 64:
+               print "Error: SSL VMT table lookup no longer supported! Please use the old version"
+               return
 
-            if chrome_version in qbot_offsets:
-                for offset in qbot_offsets[chrome_version]:
+            if decode_bits == 1:
+                offsets = CHROME_OFFSETS_X86
+            else:
+                offsets = CHROME__OFFSETS_X64
+
+            if chrome_version in offsets:
+                for offset in offsets[chrome_version]:
                     function_address = module.DllBase + offset
 
                     ret = self.check_inline(function_address, addr_space, module.DllBase, module.DllBase + module.SizeOfImage, mode = decode_bits)
@@ -1199,7 +1172,7 @@ class BrowserHooks(procdump.ProcDump):
                             jump_addr_bytes = addr_space.zread(dest_addr+6, 8)
                             dest_addr = self.bytes_to_address(jump_addr_bytes)
 
-                        hook = Hook(hook_type = HOOKTYPE_SSL_QBOT_INLINE,
+                        hook = Hook(hook_type = HOOKTYPE_SSL_INLINE_CHROME_V64,
                                     function_name = hex(function_address) or '',
                                     function_address = function_address,
                                     hook_address = dest_addr,
@@ -1213,88 +1186,6 @@ class BrowserHooks(procdump.ProcDump):
                         hook.add_hop_chunk(dest_addr, addr_space.zread(dest_addr, 24))
                         yield hook
 
-        #Searching for SSL table in Google Chrome
-        if int(ver_major) >= 51 and int(ver_major) <= 53:
-            rules = yara.compile(sources = GOOGLE_CHROME_SSLTABLE_PATTERN_51_52_53)
-        elif int(ver_major) >= 54 and int(ver_major) <= 60:
-            rules = yara.compile(sources = GOOGLE_CHROME_SSLTABLE_PATTERN_343)
-        elif int(ver_major) == 61:
-            rules = yara.compile(sources = GOOGLE_CHROME_SSLTABLE_PATTERN_61)
-        else:
-               print "Error: SSL VMT table lookup not supported! No related hooks can be found."
-               return
-
-        scanner = malfind.BaseYaraScanner( addr_space, rules = rules)
-        print "    scanner run from 0x{0:x}, len 0x{1:x}".format(module.DllBase, module.SizeOfImage)
-
-        for hit, address in scanner.scan(module.DllBase, module.SizeOfImage ):
-               content = addr_space.zread(address, 2048)
-               print "    SSL VMT table found!"
-               is_hooked = False
-               #print SSL VMT hex string
-               #PK print "    " + "".join("{:02x}".format(ord(c)) for c in content)
-               if bits32:
-                   blocks = [content[i:i+4] for i in range(8, 60, 4)]
-               else:
-                   blocks = [content[i:i+8] for i in range(8, 120, 8)]
-
-               for block in blocks:
-                   function_address = self.bytes_to_address(block)
-
-                   # Get the module containing the function
-                   function_owner = module_group.find_module(function_address)
-
-                   # This is a check for replaces in SSL VMT
-                   if function_owner != module:
-                        jump_bytes = addr_space.zread(function_address, 6)
-                        jump_str = self.bytes_to_address(jump_bytes)
-                        if jump_str == "0x25ff":
-                            jump_addr_bytes = addr_space.zread(dest_addr+6, 8)
-                            function_address = self.bytes_to_address(jump_addr_bytes)
-
-
-                        hook = Hook(hook_type = HOOKTYPE_SSL_VMT_REPLACE, function_name = n or '', hook_address = function_address, hook_module = function_owner )
-                        hook.add_hop_chunk(function_address, addr_space.zread(function_address, 24))
-                        is_hooked = True
-                        yield hook
-
-                        # No need to check for inline hooks if EAT is hooked
-                        continue
-
-                   ret = self.check_inline(function_address, addr_space, module.DllBase, module.DllBase + module.SizeOfImage, mode = decode_bits)
-
-                   if ret == None:
-                       #PK print("get_hooks: Cannot analyze {0}".format(n or ''))
-                       continue
-
-                   (hooked, data, dest_addr) = ret
-
-                   if not hooked:
-                       continue
-
-                   if not addr_space.is_valid_address(dest_addr):
-                       continue
-
-                   function_owner = module_group.find_module(dest_addr)
-                   if function_owner != module:
-                       jump_bytes = addr_space.zread(dest_addr, 6)
-                       jump_str = self.bytes_to_address(jump_bytes)
-                       if jump_str == "0x25ff":
-                           jump_addr_bytes = addr_space.zread(dest_addr+6, 8)
-                           function_address = self.bytes_to_address(jump_addr_bytes)
-
-                       hook = Hook(hook_type = HOOKTYPE_SSL_VMT_INLINE, function_name = n or '', function_address = function_address, hook_address = dest_addr, hook_module = function_owner,
-                            victim_module = module,
-                            decode_bits = decode_bits,
-                            )
-                       # Add the function prologue
-                       hook.add_hop_chunk(function_address, data)
-                       # Add the first redirection
-                       hook.add_hop_chunk(dest_addr, addr_space.zread(dest_addr, 24))
-                       is_hooked = True
-                       yield hook
-               if (is_hooked == False):
-                   print "    SSL VMT clean"
 
     def get_wow64_modules(self, proc):
         mapped_files = {}
