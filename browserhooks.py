@@ -442,42 +442,120 @@ class _UNICODE_STRING32(obj.CType):
     def __len__(self):
         return len(self.dereference())
 
-CHROME_OFFSETS_X86 = {
-#chrome_version     SSL_read   SSL_write SSL_new ssl3_write_app_data
-"64.0.3282.119": { 0x00449B2C, 0x00448E87, 0x00380A7C, 0x10448F6B },	#January 24, 2018
-"64.0.3282.140": { 0x00449B5C, 0x00448EB7, 0x00380A7C, 0x00448F9B },	#February 1, 2018
-"64.0.3282.167": { 0x00449B5C, 0x00448EB7, 0x00380A7C, 0x00448F9B },	#February 13, 2018
-"64.0.3282.186": { 0x00449A9C, 0x00448DF7, 0x0038095C, 0x00448EDB },	#February 22, 2018
-"65.0.3325.146": { 0x00425F52, 0x00425291, 0x0036199C, 0x00425379 },	#March 6, 2018
-"65.0.3325.162": { 0x00425F52, 0x00425291, 0x0036199C, 0x00425379 },	#March 13, 2018
-"65.0.3325.181": { 0x00425F52, 0x00425291, 0x0036199C, 0x00425379 }, #March 20, 2018
-"66.0.3359.117": { 0x0043B558, 0x0043A679, 0x003FFE0A, 0x0043A761 },	#April 17, 2018
-"66.0.3359.139": { 0x0043B558, 0x0043A679, 0x003FFE0A, 0x0043A761 },	#April 26, 2018
-"66.0.3359.170": { 0x0043A558, 0x00439679, 0x003FEE9A, 0x00439761 },	#May 10, 2018
-"66.0.3359.181": { 0x0043A558, 0x00439679, 0x003FEE9A, 0x00439761 },	#May 15, 2018
-"67.0.3396.62" : { 0x004835D6, 0x00482839, 0x0042DE74, 0x00482921 },	#May 29, 2018
-"67.0.3396.79" : { 0x004835D6, 0x00482839, 0x0042DE74, 0x00482921 },	#June 6, 2018
-"67.0.3396.87" : { 0x00483656, 0x004828B9, 0x0042DF04, 0x004829A1 },	#June 12, 2018
-"67.0.3396.99" : { 0x00483716, 0x00482979, 0x0042DF94, 0x00482A61 }  #June 25, 2018
+CHROME_SSL_READ_OFFSETS_X86 = {
+#chrome_version   DoPayloadRead  SSL_read ssl3_open_app_data
+"64.0.3282.119": { 0x00449908, 0x00449B2C, 0x0044ADEE },	
+"64.0.3282.140": { 0x00449938, 0x00449B5C, 0x0044AE1E },	
+"64.0.3282.167": { 0x00449938, 0x00449B5C, 0x0044AE1E },	
+"64.0.3282.186": { 0x00449878, 0x00449A9C, 0x0044AD5E },	
+"65.0.3325.146": { 0x00425D22, 0x00425F52, 0x00427264 },	
+"65.0.3325.162": { 0x00425D22, 0x00425F52, 0x00427264 },	
+"65.0.3325.181": { 0x00425D22, 0x00425F52, 0x00427264 }, 
+"66.0.3359.117": { 0x0043B328, 0x0043B558, 0x0043C950  }, 
+"66.0.3359.139": { 0x0043B328, 0x0043B558, 0x0043C950 },
+"66.0.3359.170": { 0x0043A328, 0x0043A558, 0x0043B950 },
+"66.0.3359.181": { 0x0043A328, 0x0043A558, 0x0043B950 },
+"67.0.3396.62" : { 0x004833A6, 0x004835D6, 0x004848BA },
+"67.0.3396.79" : { 0x004833A6, 0x004835D6, 0x004848BA },	
+"67.0.3396.87" : { 0x00483426, 0x00483656, 0x0048493A },	
+"67.0.3396.99" : { 0x004834E6, 0x00483716, 0x004849FA }  
 }
 
-CHROME_OFFSETS_X64 = {
-#chrome_version           SSL_write             SSL_read          SSL_new        ssl3_write_app_data             
-"64.0.3282.119":	{ 0x00000000004F6CCA, 0x00000000004F5E5E, 0x0000000000421D22, 0x00000000004F5F7F },	#January 24, 2018
-"64.0.3282.140":	{ 0x00000000004F6D5A, 0x00000000004F5EEE, 0x0000000000421D12, 0x00000000004F600F },	#February 1, 2018
-"64.0.3282.167":	{ 0x00000000004F6D5A, 0x00000000004F5EEE, 0x0000000000421D12, 0x00000000004F600F },	#February 13, 2018
-"64.0.3282.186":	{ 0x00000000004F6C4A, 0x00000000004F5DDE, 0x0000000000421BF2, 0x00000000004F5EFF },	#February 22, 2018
-"65.0.3325.146":	{ 0x00000000004CE395, 0x00000000004CD4FC, 0x0000000000400567, 0x00000000004CD623 },	#March 6, 2018
-"65.0.3325.162":	{ 0x00000000004CE395, 0x00000000004CD4FC, 0x0000000000400567, 0x00000000004CD623 },	#March 13, 2018
-"65.0.3325.181":	{ 0x00000000004CE3D5, 0x00000000004CD53C, 0x0000000000400597, 0x00000000004CD663 }, #March 20, 2018
-"66.0.3359.117":	{ 0x00000000004FCFED, 0x00000000004FBED0, 0x0000000000486E0E, 0x00000000004FBFF7 },	#April 17, 2018
-"66.0.3359.139":	{ 0x00000000004FD00D, 0x00000000004FBEF0, 0x0000000000486E2E, 0x00000000004FC017 },	#April 26, 2018
-"66.0.3359.170":	{ 0x00000000004FCF0D, 0x00000000004FBDF0, 0x0000000000486D4E, 0x00000000004FBF17 },	#May 10, 2018
-"66.0.3359.181":	{ 0x00000000004FCF1D, 0x00000000004FBE00, 0x0000000000486D5E, 0x00000000004FBF27 },	#May 15, 2018
-"67.0.3396.62":     { 0x0000000000610E65, 0x000000000060FEC2, 0x00000000004B9210, 0x000000000060FFE9 },	#May 29, 2018
-"67.0.3396.79":  	{ 0x0000000000610E55, 0x000000000060FEB2, 0x00000000004B9200, 0x000000000060FFD9 },	#June 6, 2018
-"67.0.3396.87":	    { 0x0000000000610F05, 0x000000000060FF62, 0x00000000004B92A0, 0x0000000000610089 },	#June 12, 2018
-"67.0.3396.99": 	{ 0x0000000000610F65, 0x000000000060FFC2, 0x00000000004B9300, 0x00000000006100E9 }  #June 25, 2018
+CHROME_SSL_WRITE_OFFSETS_X86 = {
+#chrome_version  DoPayloadWrite SSL_write ssl3_write_app_data
+"64.0.3282.119": { 0x00448D8E, 0x00448E87, 0x00448F6B },	
+"64.0.3282.140": { 0x00448DBE, 0x00448EB7, 0x00448F9B },	
+"64.0.3282.167": { 0x00448DBE, 0x00448EB7, 0x00448F9B },	
+"64.0.3282.186": { 0x00448CFE, 0x00448DF7, 0x00448EDB },	
+"65.0.3325.146": { 0x00425194, 0x00425291, 0x00425379 },	
+"65.0.3325.162": { 0x00425194, 0x00425291, 0x00425379 },	
+"65.0.3325.181": { 0x00425194, 0x00425291, 0x00425379 }, 
+"66.0.3359.117": { 0x0043A57C, 0x0043A679, 0x0043A761 },	
+"66.0.3359.139": { 0x0043A57C, 0x0043A679, 0x0043A761 },	
+"66.0.3359.170": { 0x0043957C, 0x00439679, 0x00439761 },	
+"66.0.3359.181": { 0x0043957C, 0x00439679, 0x00439761 },	
+"67.0.3396.62" : { 0x0048273C, 0x00482839, 0x00482921 },	
+"67.0.3396.79" : { 0x0048273C, 0x00482839, 0x00482921 },	
+"67.0.3396.87" : { 0x004827BC, 0x004828B9, 0x004829A1 },	
+"67.0.3396.99" : { 0x0048287C, 0x00482979, 0x00482A61 }  
+}
+
+CHROME_SSL_OTHER_OFFSETS_X86 = {
+#chrome_version    SSL_new      ssl3_new
+"64.0.3282.119": { 0x00380A7C, 0x00380F50 }, #January 24, 2018
+"64.0.3282.140": { 0x00380A7C, 0x00380F50 }, #February 1, 2018
+"64.0.3282.167": { 0x00380A7C, 0x00380F50 }, #February 13, 2018
+"64.0.3282.186": { 0x0038095C, 0x00380E30 }, #February 22, 2018
+"65.0.3325.146": { 0x0036199C, 0x00361E70 }, #March 6, 2018
+"65.0.3325.162": { 0x0036199C, 0x00361E70 }, #March 13, 2018
+"65.0.3325.181": { 0x0036199C, 0x00361E70 }, #March 20, 2018
+"66.0.3359.117": { 0x003FFE0A, 0x004002F4 }, #April 17, 2018
+"66.0.3359.139": { 0x003FFE0A, 0x004002F4 }, #April 26, 2018
+"66.0.3359.170": { 0x003FEE9A, 0x003FF384 }, #May 10, 2018
+"66.0.3359.181": { 0x003FEE9A, 0x003FF384 }, #May 15, 2018
+"67.0.3396.62" : { 0x0042DE74, 0x0042E35E }, #May 29, 2018
+"67.0.3396.79" : { 0x0042DE74, 0x0042E35E }, #June 6, 2018
+"67.0.3396.87" : { 0x0042DF04, 0x0042E3EE }, #June 12, 2018
+"67.0.3396.99" : { 0x0042DF94, 0x0042E47E }  #June 25, 2018
+}
+
+
+
+CHROME_SSL_READ_OFFSETS_X64 = {
+#chrome_version           DoPayloadRead         SSL_read       ssl3_open_app_data             
+"64.0.3282.119":	{ 0x00000000004F6A9C, 0x00000000004F6CCA, 0x00000000004F8209 }, 
+"64.0.3282.140":	{ 0x00000000004F6B2C, 0x00000000004F6D5A, 0x00000000004F8299 }, 
+"64.0.3282.167":	{ 0x00000000004F6B2C, 0x00000000004F6D5A, 0x00000000004F8299 }, 
+"64.0.3282.186":	{ 0x00000000004F6A1C, 0x00000000004F6C4A, 0x00000000004F8189 },	
+"65.0.3325.146":	{ 0x00000000004CE152, 0x00000000004CE395, 0x00000000004CF94F },	
+"65.0.3325.162":	{ 0x00000000004CE152, 0x00000000004CE395, 0x00000000004CF94F },	
+"65.0.3325.181":	{ 0x00000000004CE192, 0x00000000004CE3D5, 0x00000000004CF98F }, 
+"66.0.3359.117":	{ 0x00000000004FCDAA, 0x00000000004FCFED, 0x00000000004FE677 },
+"66.0.3359.139":	{ 0x00000000004FCDCA, 0x00000000004FD00D, 0x00000000004FE697 },
+"66.0.3359.170":	{ 0x00000000004FCCCA, 0x00000000004FCF0D, 0x00000000004FE597 },
+"66.0.3359.181":	{ 0x00000000004FCCDA, 0x00000000004FCF1D, 0x00000000004FE5A7 },
+"67.0.3396.62":     { 0x0000000000610C22, 0x0000000000610E65, 0x0000000000612413 },
+"67.0.3396.79":  	{ 0x0000000000610C12, 0x0000000000610E55, 0x0000000000612403 },
+"67.0.3396.87":	    { 0x0000000000610CC2, 0x0000000000610F05, 0x00000000006124B3 },
+"67.0.3396.99": 	{ 0x0000000000610D22, 0x0000000000610F65, 0x0000000000612513 } 
+}
+
+CHROME_SSL_WRITE_OFFSETS_X64 = {
+#chrome_version           DoPayloadWrite      SSL_write       ssl3_write_app_data             
+"64.0.3282.119":	{ 0x00000000004F5D38, 0x00000000004F5E5E, 0x00000000004F5F7F },	
+"64.0.3282.140":	{ 0x00000000004F5DC8, 0x00000000004F5EEE, 0x00000000004F600F },	
+"64.0.3282.167":	{ 0x00000000004F5DC8, 0x00000000004F5EEE, 0x00000000004F600F },	
+"64.0.3282.186":	{ 0x00000000004F5CB8, 0x00000000004F5DDE, 0x00000000004F5EFF },	
+"65.0.3325.146":	{ 0x00000000004CD3D0, 0x00000000004CD4FC, 0x00000000004CD623 },	
+"65.0.3325.162":	{ 0x00000000004CD3D0, 0x00000000004CD4FC, 0x00000000004CD623 },	
+"65.0.3325.181":	{ 0x00000000004CD410, 0x00000000004CD53C, 0x00000000004CD663 }, 
+"66.0.3359.117":	{ 0x00000000004FBDA4, 0x00000000004FBED0, 0x00000000004FBFF7 },
+"66.0.3359.139":	{ 0x00000000004FBDC4, 0x00000000004FBEF0, 0x00000000004FC017 },
+"66.0.3359.170":	{ 0x00000000004FBCC4, 0x00000000004FBDF0, 0x00000000004FBF17 },
+"66.0.3359.181":	{ 0x00000000004FBCD4, 0x00000000004FBE00, 0x00000000004FBF27 },
+"67.0.3396.62":     { 0x000000000060FD96, 0x000000000060FEC2, 0x000000000060FFE9 },
+"67.0.3396.79":  	{ 0x000000000060FD86, 0x000000000060FEB2, 0x000000000060FFD9 },
+"67.0.3396.87":	    { 0x000000000060FE36, 0x000000000060FF62, 0x0000000000610089 },
+"67.0.3396.99": 	{ 0x000000000060FE96, 0x000000000060FFC2, 0x00000000006100E9 },
+}
+
+CHROME_SSL_OTHER_OFFSETS_X64 = {
+#chrome_version             SSL_new             ssl3_new             
+"64.0.3282.119":	{  0x0000000000421D22, 0x0000000000422299 },	
+"64.0.3282.140":	{  0x0000000000421D12, 0x0000000000422289 },	
+"64.0.3282.167":	{  0x0000000000421D12, 0x0000000000422289 },	
+"64.0.3282.186":	{  0x0000000000421BF2, 0x0000000000422169 },	
+"65.0.3325.146":	{  0x0000000000400567, 0x0000000000400ADB },	
+"65.0.3325.162":	{  0x0000000000400567, 0x0000000000400ADB },	
+"65.0.3325.181":	{  0x0000000000400597, 0x0000000000400B0B }, 
+"66.0.3359.117":	{  0x0000000000486E0E, 0x0000000000487398 },
+"66.0.3359.139":	{  0x0000000000486E2E, 0x00000000004873B8 },
+"66.0.3359.170":	{  0x0000000000486D4E, 0x00000000004872D8 },
+"66.0.3359.181":	{  0x0000000000486D5E, 0x00000000004872E8 },
+"67.0.3396.62":     {  0x00000000004B9210, 0x00000000004B979A },
+"67.0.3396.79":  	{  0x00000000004B9200, 0x00000000004B978A },
+"67.0.3396.87":	    {  0x00000000004B92A0, 0x00000000004B982A },
+"67.0.3396.99": 	{  0x00000000004B9300, 0x00000000004B988A } 
 }
 
 IMAGE_NT_OPTIONAL_HDR32_MAGIC = 0x010B
@@ -489,7 +567,9 @@ HOOKTYPE_EAT = 8
 HOOKTYPE_INLINE = 16
 HOOKTYPE_IRP = 256
 HOOKTYPE_WINSOCK = 512
-HOOKTYPE_SSL_INLINE_CHROME_V64 = 4096
+HOOKTYPE_INLINE_CHROME_V64_SSL_READ = 1024
+HOOKTYPE_INLINE_CHROME_V64_SSL_WRITE = 2048
+HOOKTYPE_INLINE_CHROME_V64_SSL_OTHER = 4096
 
 # names for hook types
 hook_type_strings = {
@@ -497,7 +577,9 @@ hook_type_strings = {
     HOOKTYPE_EAT             : "Export Address Table (EAT)",
     HOOKTYPE_INLINE          : "Inline/Trampoline",
     HOOKTYPE_WINSOCK         : "Winsock Procedure Table Hook",
-    HOOKTYPE_SSL_INLINE_CHROME_V64 : "SSL Hooks for Chrome version 64+"
+    HOOKTYPE_INLINE_CHROME_V64_SSL_READ : "SSL read related hooks for Chrome version 64+",
+    HOOKTYPE_INLINE_CHROME_V64_SSL_WRITE : "SSL write related hooks for Chrome version 64+",
+    HOOKTYPE_INLINE_CHROME_V64_SSL_OTHER : "Other SSL hooks for Chrome version 64+"
 }
 
 #--------------------------------------------------------------------------------
@@ -1074,8 +1156,8 @@ class BrowserHooks(procdump.ProcDump):
             # This is a check for EAT hooks
             if function_owner != module:
                 jump_bytes = addr_space.zread(function_address, 6)
-                jump_str = self.bytes_to_address(jump_bytes)
-                if jump_str == "0x25ff":
+                jump_str = "".join("{:02x}".format(ord(c)) for c in jump_bytes)
+                if jump_str == "ff2500000000":
                     jump_addr_bytes = addr_space.zread(function_address+6, 8)
                     function_address = self.bytes_to_address(jump_addr_bytes)
 
@@ -1109,8 +1191,8 @@ class BrowserHooks(procdump.ProcDump):
             function_owner = module_group.find_module(dest_addr)
             if function_owner != module:
                 jump_bytes = addr_space.zread(dest_addr, 6)
-                jump_str = self.bytes_to_address(jump_bytes)
-                if jump_str == "0x25ff":
+                jump_str = "".join("{:02x}".format(ord(c)) for c in jump_bytes)
+                if jump_str == "ff2500000000":
                     jump_addr_bytes = addr_space.zread(dest_addr+6, 8)
                     dest_addr = self.bytes_to_address(jump_addr_bytes)
 
@@ -1143,12 +1225,16 @@ class BrowserHooks(procdump.ProcDump):
                return
 
             if decode_bits == 1:
-                offsets = CHROME_OFFSETS_X86
+                offsets_write = CHROME_SSL_WRITE_OFFSETS_X86
+                offsets_read = CHROME_SSL_READ_OFFSETS_X86
+                offsets_other = CHROME_SSL_OTHER_OFFSETS_X86
             else:
-                offsets = CHROME__OFFSETS_X64
+                offsets_write = CHROME_SSL_WRITE_OFFSETS_X64
+                offsets_read = CHROME_SSL_READ_OFFSETS_X64
+                offsets_other = CHROME_SSL_OTHER_OFFSETS_X64
 
-            if chrome_version in offsets:
-                for offset in offsets[chrome_version]:
+            if chrome_version in offsets_read:
+                for offset in offsets_read[chrome_version]:
                     function_address = module.DllBase + offset
 
                     ret = self.check_inline(function_address, addr_space, module.DllBase, module.DllBase + module.SizeOfImage, mode = decode_bits)
@@ -1167,12 +1253,90 @@ class BrowserHooks(procdump.ProcDump):
                     function_owner = module_group.find_module(dest_addr)
                     if function_owner != module:
                         jump_bytes = addr_space.zread(dest_addr, 6)
-                        jump_str = self.bytes_to_address(jump_bytes)
-                        if jump_str == "0x25ff":
+                        jump_str = "".join("{:02x}".format(ord(c)) for c in jump_bytes)
+                        if jump_str == "ff2500000000":
                             jump_addr_bytes = addr_space.zread(dest_addr+6, 8)
                             dest_addr = self.bytes_to_address(jump_addr_bytes)
 
-                        hook = Hook(hook_type = HOOKTYPE_SSL_INLINE_CHROME_V64,
+                        hook = Hook(hook_type = HOOKTYPE_INLINE_CHROME_V64_SSL_READ,
+                                    function_name = hex(function_address) or '',
+                                    function_address = function_address,
+                                    hook_address = dest_addr,
+                                    hook_module = function_owner,
+                                    victim_module = module,
+                                    decode_bits = decode_bits,
+                                    )
+                        # Add the function prologue
+                        hook.add_hop_chunk(function_address, data)
+                        # Add the first redirection
+                        hook.add_hop_chunk(dest_addr, addr_space.zread(dest_addr, 24))
+                        yield hook
+
+            if chrome_version in offsets_write:
+                for offset in offsets_write[chrome_version]:
+                    function_address = module.DllBase + offset
+
+                    ret = self.check_inline(function_address, addr_space, module.DllBase, module.DllBase + module.SizeOfImage, mode = decode_bits)
+                    if ret == None:
+                        #PK print("get_hooks: Cannot analyze {0}".format(n or ''))
+                        continue
+
+                    (hooked, data, dest_addr) = ret
+
+                    if not hooked:
+                        continue
+
+                    if not addr_space.is_valid_address(dest_addr):
+                        continue
+
+                    function_owner = module_group.find_module(dest_addr)
+                    if function_owner != module:
+                        jump_bytes = addr_space.zread(dest_addr, 6)
+                        jump_str = "".join("{:02x}".format(ord(c)) for c in jump_bytes)
+                        if jump_str == "ff2500000000":
+                            jump_addr_bytes = addr_space.zread(dest_addr+6, 8)
+                            dest_addr = self.bytes_to_address(jump_addr_bytes)
+
+                        hook = Hook(hook_type = HOOKTYPE_INLINE_CHROME_V64_SSL_WRITE,
+                                    function_name = hex(function_address) or '',
+                                    function_address = function_address,
+                                    hook_address = dest_addr,
+                                    hook_module = function_owner,
+                                    victim_module = module,
+                                    decode_bits = decode_bits,
+                                    )
+                        # Add the function prologue
+                        hook.add_hop_chunk(function_address, data)
+                        # Add the first redirection
+                        hook.add_hop_chunk(dest_addr, addr_space.zread(dest_addr, 24))
+                        yield hook
+
+            if chrome_version in offsets_other:
+                for offset in offsets_other[chrome_version]:
+                    function_address = module.DllBase + offset
+
+                    ret = self.check_inline(function_address, addr_space, module.DllBase, module.DllBase + module.SizeOfImage, mode = decode_bits)
+                    if ret == None:
+                        #PK print("get_hooks: Cannot analyze {0}".format(n or ''))
+                        continue
+
+                    (hooked, data, dest_addr) = ret
+
+                    if not hooked:
+                        continue
+
+                    if not addr_space.is_valid_address(dest_addr):
+                        continue
+
+                    function_owner = module_group.find_module(dest_addr)
+                    if function_owner != module:
+                        jump_bytes = addr_space.zread(dest_addr, 6)
+                        jump_str = "".join("{:02x}".format(ord(c)) for c in jump_bytes)
+                        if jump_str == "ff2500000000":
+                            jump_addr_bytes = addr_space.zread(dest_addr+6, 8)
+                            dest_addr = self.bytes_to_address(jump_addr_bytes)
+
+                        hook = Hook(hook_type = HOOKTYPE_INLINE_CHROME_V64_SSL_OTHER,
                                     function_name = hex(function_address) or '',
                                     function_address = function_address,
                                     hook_address = dest_addr,
